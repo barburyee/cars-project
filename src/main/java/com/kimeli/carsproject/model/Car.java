@@ -15,16 +15,23 @@ public class Car {
     private Integer carownerid;
 
     public Car() {
-        super();
     }
 
-    public Car(String carreg, String carmade, String carmodel, String capturepicturepath, Integer carownerid) {
-        super();
+    public Car(Long id, String carreg, String carmade, String carmodel, String capturepicturepath, Integer carownerid) {
+        this.id = id;
         this.carreg = carreg;
         this.carmade = carmade;
         this.carmodel = carmodel;
         this.capturepicturepath = capturepicturepath;
         this.carownerid = carownerid;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCarreg() {

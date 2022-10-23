@@ -14,11 +14,10 @@ public class Users {
     private Long idnumber;
 
     public Users() {
-        super();
     }
 
-    public Users(String firstname, String lastname, Long idnumber) {
-        super();
+    public Users(Long id, String firstname, String lastname, Long idnumber) {
+        this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.idnumber = idnumber;
