@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="carowners")
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstname;
     private String lastname;
@@ -16,11 +16,25 @@ public class Users {
     public Users() {
     }
 
+    public Users(String firstname, String lastname, Long idnumber) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.idnumber = idnumber;
+    }
+
     public Users(Long id, String firstname, String lastname, Long idnumber) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.idnumber = idnumber;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstname() {
