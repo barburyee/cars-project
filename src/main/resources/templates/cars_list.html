@@ -39,7 +39,7 @@
                 <td th:text="${car.carmade}"></td>
                 <td th:text="${car.carmodel}"></td>
                 <td th:text="${car.carownerid}"></td>
-                <td th:text="${car.capturepicturepath}"></td>
+                <td th:text="${car.capturepicturepath}"><img th:src="@{~/uploads/${car.capturepicturepath}}"></td>
                 <td><a th:href="@{/viewSpecificCar/{id}(id=${car.id})}" class="btn btn-primary"><i class="fa fa-pencil"></i>View</a> </td>
             </tr>
             </tbody>

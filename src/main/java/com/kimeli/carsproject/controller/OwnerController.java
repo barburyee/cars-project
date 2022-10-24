@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class OwnerController {
@@ -38,4 +39,5 @@ public class OwnerController {
         model.addAttribute("user",userRepo.findById(id));
         return "view_owner";
     }
+
 }

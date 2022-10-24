@@ -7,28 +7,40 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
 <body>
-<div align="center">
-    <h1>All Cars </h1>
-    <table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>ID Number</th>
-        <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.id}">Id</td>
-        <td th:text="${user.firstname}">FirstName</td>
-        <td th:text="${user.lastname}">LastName</td>
-        <td th:text="${user.idnumber}">ID Number</td>
-        <td><a th:href="@{/viewOwner/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa fa-pencil ml-2"></i>View</a> </td>
-    </tr>
-    </tbody>
-</table>
+<div class="container">
+    <div align="center">
+        <div class="row">
+            <div class="col-10">
+                <h3>All Car Owners </h3>
+            </div>
+            <div class="col-2">
+                <a th:href="@{/addOwner}" class="btn btn-success pull-right">Add Car Owner</a>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>ID Number</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}">Id</td>
+                    <td th:text="${user.firstname}">FirstName</td>
+                    <td th:text="${user.lastname}">LastName</td>
+                    <td th:text="${user.idnumber}">ID Number</td>
+                    <td><a th:href="@{/viewOwner/{id}(id=${user.id})}" class="btn btn-primary"><i class="fa fa-pencil ml-2"></i>View</a> </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
