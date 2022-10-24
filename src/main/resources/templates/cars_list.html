@@ -8,9 +8,9 @@
           crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
+<div class="container" style="border-style: outset;padding-top: 15px; margin-top: 10px;">
     <div align="center">
-        <div class="row">
+        <div class="row" style="margin-top: 8px;">
             <div class="col-10">
                 <h3>All Cars </h3>
             </div>
@@ -39,7 +39,7 @@
                 <td th:text="${car.carmade}"></td>
                 <td th:text="${car.carmodel}"></td>
                 <td th:text="${car.carownerid}"></td>
-                <td th:text="${car.capturepicturepath}"><img th:src="@{~/uploads/${car.capturepicturepath}}"></td>
+                <td><img class="img-responsive" style="width: 120px; height: 50px;"  th:src="@{'getImage/'+ ${car.capturepicturepath}}" /></td>
                 <td><a th:href="@{/viewSpecificCar/{id}(id=${car.id})}" class="btn btn-primary"><i class="fa fa-pencil"></i>View</a> </td>
             </tr>
             </tbody>

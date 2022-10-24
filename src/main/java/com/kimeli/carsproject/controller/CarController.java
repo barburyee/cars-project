@@ -84,7 +84,7 @@ public class CarController {
     public String carsList(Model model)
     {
         model.addAttribute("cars", carRepo.findAll());
-        return "cars_list";
+        return "index";
     }
     @GetMapping("/")
     public String carsListed(Model model)
@@ -96,12 +96,31 @@ public class CarController {
     public String getSpecificCar(@PathVariable("id") Long id, Model model){
         System.out.println("Car Details: "+carRepo.findById(id));
         model.addAttribute("car", carRepo.findById(id));
+        System.out.println("Car Photo URL: "+carRepo.findById(id).get().getCapturepicturepath());
+        model.addAttribute("cars", carRepo.findById(id).get().getCapturepicturepath());
+        System.out.println("Current Details: "+carRepo.findById(id));
         return "view_car";
     }
     //To return the uploade Image when feed with image file name
     @GetMapping("/getImage/{photo}")
     @ResponseBody
     public ResponseEntity<ByteArrayResource> getImage(@PathVariable("photo") String photo ){
+        if(!photo.equals("")||photo!=null){
+            try{
+                Path filename = Paths.get("images",photo);
+                byte[] buffer = Files.readAllBytes(filename);
+                ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+                return ResponseEntity.ok().contentLength(buffer.length).contentType(MediaType.parseMediaType("image/png")).
+                        body(byteArrayResource);
+            }catch (Exception ex){
+
+            }
+        }
+        return ResponseEntity.badRequest().build();
+    }
+    @GetMapping("/viewSpecificCar/getImage/{photo}")
+    @ResponseBody
+    public ResponseEntity<ByteArrayResource> getImageNow(@PathVariable("photo") String photo ){
         if(!photo.equals("")||photo!=null){
             try{
                 Path filename = Paths.get("images",photo);

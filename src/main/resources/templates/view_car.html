@@ -8,40 +8,45 @@
 
 </head>
 <body>
-<div class="container">
-    <div class="col-10" align="center">
-        <h3>Car Details</h3>
+<div class="container" style="border-style: outset;padding-top: 15px; margin-top: 10px;">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-10" align="center">
+            <h3>Car Details</h3>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-primary btn-sm pull-right" onclick="history.back()">Go Back</button>
+        </div>
     </div>
-    <div class="col-2">
-        <button onclick="history.back()">Go Back</button>
+    <hr/>
+    <div class="row">
+        <form action="#" method="post" th:object="${car}">
+            <div class="form-group">
+                <label>Car Registration: </label>
+                <input type="text" th:field="*{carreg}" class="form-control"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label>Car Make: </label>
+                <input type="text" th:field="*{carmade}" class="form-control"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label>Car Model: </label>
+                <input type="text" th:field="*{carmodel}" class="form-control"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label>Car Owner Id:</label>
+                <input type="text" th:field="*{carownerid}" class="form-control"/>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label>Car Picture: </label>
+                <p class="form-control"><img th:src="@{'getImage/'+${cars}}" class="img-responsive" width="220"/></p>
+            </div>
+            <br/>
+        </form>
     </div>
-    <form action="#" method="post" th:object="${car}">
-        <div class="form-group">
-            <label>Car Registration: </label>
-            <input type="text" th:field="*{carreg}" class="form-control"/>
-        </div>
-        <br/>
-        <div class="form-group">
-            <label>Car Make: </label>
-            <input type="text" th:field="*{carmade}" class="form-control"/>
-        </div>
-        <br/>
-        <div class="form-group">
-            <label>Car Model: </label>
-            <input type="text" th:field="*{carmodel}" class="form-control"/>
-        </div>
-        <br/>
-        <div class="form-group">
-            <label>Car Owner Id:</label>
-            <input type="text" th:field="*{carownerid}" class="form-control"/>
-        </div>
-        <br/>
-        <div class="form-group">
-            <label>Car Picture: </label>
-            <img class="img-responsive form-control" style="width: 120px; height: 50px;"  th:src="@{'getImage/'+ ${car.capturepicturepath}}" />
-        </div>
-        <br/>
-    </form>
 </div>
 </body>
 </html>

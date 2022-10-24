@@ -8,16 +8,17 @@
           crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
+<div class="container" style="border-style: outset;padding-top: 15px; margin-top: 10px;">
     <div align="center">
-        <div class="row">
-            <div class="col-8">
+        <div class="row" style="margin-top: 8px;">
+            <div class="col-9">
                 <h3>All Cars </h3>
             </div>
-            <div class="col-2">
+            <!--<div class="col-2">
                 <a th:href="@{/ownersList}" class="btn btn-success pull-right">Car Owners</a>
-            </div>
-            <div class="col-2">
+            </div>-->
+            <div class="col-3">
+                <a th:href="@{/ownersList}" class="btn btn-success pull-left">Car Owners</a>
                 <a th:href="@{/addCar}" class="btn btn-success pull-right">Add Car</a>
             </div>
         </div>
