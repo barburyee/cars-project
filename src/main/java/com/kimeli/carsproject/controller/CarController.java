@@ -4,6 +4,8 @@ import com.kimeli.carsproject.model.Car;
 import com.kimeli.carsproject.model.Users;
 import com.kimeli.carsproject.repository.CarRepository;
 import com.kimeli.carsproject.repository.UsersRepository;
+import com.kimeli.carsproject.service.CarService;
+import com.kimeli.carsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ByteArrayResource;
@@ -31,10 +33,13 @@ import java.util.Locale;
 @Controller
 public class CarController {
     @Autowired
-    private CarRepository carRepo;
+    private CarService carService;
 
     @Autowired
-    private UsersRepository usersRepository;
+    private UserService userService;
+
+    @Autowired
+    private CarRepository carRepository;
     //To load Interface with form for adding car details to the system
     @GetMapping("/addCar")
     public String showRegistrationForm(Model model){
@@ -44,7 +49,7 @@ public class CarController {
         model.addAttribute("ownerList",ownerList);
         List<Users> test = new ArrayList<>();
         model.addAttribute("user", test);
-        List<Users> tests = usersRepository.findAll();
+        List<Users> tests = userService.findAllUsers();
         System.out.println("All Cars: "+ tests);
         model.addAttribute("users", tests);
         return "add_car";
@@ -72,7 +77,7 @@ public class CarController {
                     StandardCopyOption.REPLACE_EXISTING
                     );
             car.setCapturepicturepath(capturepicturepath.getOriginalFilename().toLowerCase());
-            carRepo.save(car);
+            carService.saveCarDetails(car);
         }catch(Exception ex){
             ex.printStackTrace();
         }
@@ -83,22 +88,22 @@ public class CarController {
     @GetMapping("/carsList")
     public String carsList(Model model)
     {
-        model.addAttribute("cars", carRepo.findAll());
+        model.addAttribute("cars", carService.findAllCars());
         return "index";
     }
     @GetMapping("/")
     public String carsListed(Model model)
     {
-        model.addAttribute("cars", carRepo.findAll());
+        model.addAttribute("cars", carService.findAllCars());
         return "index";
     }
     @GetMapping("/viewSpecificCar/{id}")
     public String getSpecificCar(@PathVariable("id") Long id, Model model){
-        System.out.println("Car Details: "+carRepo.findById(id));
-        model.addAttribute("car", carRepo.findById(id));
-        System.out.println("Car Photo URL: "+carRepo.findById(id).get().getCapturepicturepath());
-        model.addAttribute("cars", carRepo.findById(id).get().getCapturepicturepath());
-        System.out.println("Current Details: "+carRepo.findById(id));
+        System.out.println("Car Details: "+carRepository.findById(id));
+        model.addAttribute("car", carRepository.findById(id));
+        System.out.println("Car Photo URL: "+carRepository.findById(id).get().getCapturepicturepath());
+        model.addAttribute("cars", carRepository.findById(id).get().getCapturepicturepath());
+        System.out.println("Current Details: "+carRepository.findById(id));
         return "view_car";
     }
     //To return the uploade Image when feed with image file name

@@ -1,8 +1,14 @@
 package com.kimeli.carsproject.service;
 
-import org.springframework.stereotype.Service;
+import com.kimeli.carsproject.model.Car;
 
-@Service
-public class CarService implements CarServiceImpl{
+import java.util.List;
 
+public interface CarService {
+
+    public void saveCarDetails(Car car);
+
+    public Object findAllCars();
+
+   public List<Object> findCarById(Long id);
 }
