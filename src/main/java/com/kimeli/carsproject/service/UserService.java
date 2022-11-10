@@ -8,4 +8,6 @@ public interface UserService {
     public List<Users> findAllUsers();
 
     public void saveUser(Users users);
+
+    public List<Users> findByFirstName(String fName);
 }

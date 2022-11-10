@@ -9,6 +9,7 @@ import com.kimeli.carsproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -138,6 +140,28 @@ public class CarController {
             }
         }
         return ResponseEntity.badRequest().build();
+    }
+
+    @GetMapping("/testOwnersList")
+    public ResponseEntity<List<Users>> testRegistrationForm(@RequestParam(required = false) String name){
+
+        List<String> professionList = Arrays.asList("Developer","Designer","Architect","DevOps");
+
+        if(name == null){
+            return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
+        }
+
+        /*List<Users> usersList = new ArrayList<>();
+        Users users = userService.findByFirstName(name);
+        if(users!=null){
+            usersList.add(users);
+        }
+        if(users.isEmpty()){
+            //throw new UsersNotFoundException("Not");
+        }*/
+        return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
+
+
     }
 
 }
